@@ -8,9 +8,9 @@ def get_tradable_items() -> List[ItemJson]:
 
 def get_item_info(slug: str) -> ItemJson:
     """Get full info about one, particular item"""
-    return ItemJson(**get_request_wfm(f"item/{validate_slug(slug)}"))
+    return ItemJson(**get_request_wfm(f"items/{validate_slug(slug)}"))
 
 def get_item_set_info(slug: str) -> Tuple[str, List[ItemJson]]:
     """Retrieve Information on Item Sets"""
-    res = get_request_wfm(f"item/{validate_slug(slug)}/set")
+    res = get_request_wfm(f"items/{validate_slug(slug)}/set")
     return res["id"], [ItemJson(**i) for i in res["items"]]

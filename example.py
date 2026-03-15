@@ -21,9 +21,9 @@ def example_01_items():
 # ─────────────────────────────────────────────────────────────────────────────
 
 def example_02_top_orders():
-    print("\n=== 2. Top 5 buy / sell orders — boltor-prime-set ===")
+    print("\n=== 2. Top 5 buy / sell orders — boltor_prime_set ===")
 
-    buys, sells = wfm.get_top_orders_item("boltor-prime-set")
+    buys, sells = wfm.get_top_orders_item("boltor_prime_set")
 
     print("  Buy  :")
     for o in buys:
@@ -71,9 +71,9 @@ def example_04_recent_orders():
 # ─────────────────────────────────────────────────────────────────────────────
 
 def example_05_statistics():
-    print("\n=== 5. Price statistics — ash-prime-set (last 7 days) ===")
+    print("\n=== 5. Price statistics — ash_prime_set (last 7 days) ===")
 
-    stats = wfm.get_item_statistics("ash-prime-set")
+    stats = wfm.get_item_statistics("ash_prime_set")
 
     entries_90d = stats.get("statistics_closed", {}).get("90days", [])
     for entry in entries_90d[-7:]:
@@ -151,7 +151,7 @@ def example_08_authenticated():
     print(f"  Active orders: {len(my_orders)}")
 
     # Create a sell order
-    item_info = wfm.get_item_info("boltor-prime-set")
+    item_info = wfm.get_item_info("boltor_prime_set")
     new_order = wfm.create_order(
         item_id=item_info.id,
         order_type="sell",
@@ -180,7 +180,7 @@ def example_08_authenticated():
 def example_09_arbitrage():
     print("\n=== 9. Arbitrage — Ash Prime: set vs sum of parts ===")
 
-    _, parts = wfm.get_item_set_info("ash-prime-set")
+    _, parts = wfm.get_item_set_info("ash_prime_set")
 
     part_prices: dict[str, int] = {}
     for part in parts:
@@ -194,7 +194,7 @@ def example_09_arbitrage():
             pass
 
     try:
-        _, set_sells = wfm.get_top_orders_item("ash-prime-set")
+        _, set_sells = wfm.get_top_orders_item("ash_prime_set")
         set_price = set_sells[0].platinum if set_sells else None
     except Exception:
         set_price = None

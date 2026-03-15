@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from py_wfm_api.objects.user import UserShort
+from py_wfm_api.objects.utils import dc_from_dict
 
 
 @dataclass
@@ -13,7 +14,7 @@ class AuctionBid:
 
     def __post_init__(self):
         if isinstance(self.user, dict):
-            self.user = UserShort(**self.user)
+            self.user = dc_from_dict(UserShort, self.user)
 
 
 @dataclass
@@ -57,14 +58,14 @@ class Auction:
 
     def __post_init__(self):
         if isinstance(self.owner, dict):
-            self.owner = UserShort(**self.owner)
+            self.owner = dc_from_dict(UserShort, self.owner)
         if isinstance(self.winner, dict):
-            self.winner = UserShort(**self.winner)
+            self.winner = dc_from_dict(UserShort, self.winner)
         if self.bids:
-            self.bids = [AuctionBid(**b) if isinstance(b, dict) else b for b in self.bids]
+            self.bids = [dc_from_dict(AuctionBid, b) if isinstance(b, dict) else b for b in self.bids]
         if isinstance(self.item, dict):
             entry_type = self.item.get("type")
             if entry_type == "lich":
-                self.item = AuctionEntryLich(**self.item)
+                self.item = dc_from_dict(AuctionEntryLich, self.item)
             elif entry_type == "sister":
-                self.item = AuctionEntrySister(**self.item)
+                self.item = dc_from_dict(AuctionEntrySister, self.item)

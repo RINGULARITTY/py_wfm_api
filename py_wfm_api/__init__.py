@@ -50,7 +50,7 @@ from py_wfm_api.api import (
     # Statistics
     get_item_statistics,
 )
-from wfm import api, objects
+from py_wfm_api import api, objects
 
 __all__ = [
     "api", "objects",

@@ -1,24 +1,12 @@
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 from py_wfm_api.objects.categories import Language
-
-
-def _parse_i18n(cls, data: dict) -> dict:
-    if not data:
-        return {}
-    result = {}
-    for k, v in data.items():
-        try:
-            lang = Language(k) if isinstance(k, str) else k
-        except ValueError:
-            lang = k
-        result[lang] = cls(**v) if isinstance(v, dict) else v
-    return result
+from py_wfm_api.objects.utils import parse_i18n
 
 
 @dataclass
 class RivenI18NJson:
-    itemName: Optional[str] = None
+    name: Optional[str] = None
     wikiLink: Optional[str] = None
     icon: str = ""
     thumb: str = ""
@@ -36,12 +24,12 @@ class Riven:
     i18n: Dict[Language, RivenI18NJson] = field(default_factory=dict)
 
     def __post_init__(self):
-        self.i18n = _parse_i18n(RivenI18NJson, self.i18n)
+        self.i18n = parse_i18n(RivenI18NJson, self.i18n)
 
 
 @dataclass
 class RivenAttributeI18N:
-    effect: str
+    name: str
     icon: str
     thumb: str
 
@@ -62,4 +50,4 @@ class RivenAttribute:
     i18n: Dict[Language, RivenAttributeI18N] = field(default_factory=dict)
 
     def __post_init__(self):
-        self.i18n = _parse_i18n(RivenAttributeI18N, self.i18n)
+        self.i18n = parse_i18n(RivenAttributeI18N, self.i18n)

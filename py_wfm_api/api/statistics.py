@@ -14,4 +14,4 @@ def get_item_statistics(slug: str) -> dict:
             "statistics_closed": {"48hours": [...], "90days": [...]},
         }
     """
-    return get_request_wfm(f"statistics/item/{validate_slug(slug)}")
+    return get_request_wfm(f"items/{validate_slug(slug)}/statistics")

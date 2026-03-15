@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from py_wfm_api.objects.user import UserShort
 from py_wfm_api.objects.item import TxItem
+from py_wfm_api.objects.utils import dc_from_dict
 
 
 @dataclass
@@ -29,7 +30,7 @@ class OrderWithUser(Order):
 
     def __post_init__(self):
         if isinstance(self.user, dict):
-            self.user = UserShort(**self.user)
+            self.user = dc_from_dict(UserShort, self.user)
 
 
 @dataclass
@@ -46,6 +47,6 @@ class Transaction:
 
     def __post_init__(self):
         if isinstance(self.item, dict):
-            self.item = TxItem(**self.item)
+            self.item = dc_from_dict(TxItem, self.item)
         if isinstance(self.user, dict):
-            self.user = UserShort(**self.user)
+            self.user = dc_from_dict(UserShort, self.user)
