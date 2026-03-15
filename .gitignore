@@ -1,0 +1,46 @@
+# ─── Testsuite (contient les credentials) ────────────────────────────────────
+testsuite/
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+
+# ─── Distribution / build ─────────────────────────────────────────────────────
+dist/
+build/
+*.whl
+
+# ─── Environnements virtuels ──────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env/
+
+# ─── Variables d'environnement ────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Pytest / coverage ────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml

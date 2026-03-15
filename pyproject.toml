@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "py_wfm_api"
+version = "0.1.0"
+description = "Python client for the Warframe Market API v2"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["warframe", "warframe-market", "api", "trading"]
+dependencies = [
+    "requests>=2.28",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourname/wfm"
+"Bug Tracker" = "https://github.com/yourname/wfm/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["py_wfm_api*"]
+
+[tool.pytest.ini_options]
+testpaths = ["testsuite"]
+# Par défaut : tests unitaires uniquement (pas d'appels réseau)
+# Pour lancer TOUT (y compris intégration) : pytest -m ""
+# Pour lancer uniquement les tests d'intégration : pytest -m integration
+addopts = "-m 'not integration'"
+markers = [
+    "integration: tests qui appellent l'API réelle (réseau requis)",
+    "auth: tests qui nécessitent un token d'authentification",
+]
