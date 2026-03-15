@@ -9,14 +9,14 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![WFM API](https://img.shields.io/badge/WFM_API-v2-orange)](https://warframe.market)
 
+</div>
+
 ```python
 import py_wfm_api as wfm
 
 buys, sells = wfm.get_top_orders_item("boltor_prime_set")
 print(f"Best sell: {sells[0].platinum} pt  by {sells[0].user.ingameName}")
 ```
-
-</div>
 
 ---
 
